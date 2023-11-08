@@ -1,0 +1,23 @@
+---
+
+# jenkins variables
+project_name: docker-baseimage-immich
+external_type: os
+release_type: stable
+release_tag: latest
+ig_branch: main
+repo_vars:
+  - BUILD_VERSION_ARG = 'BUILDER_VERSION'
+  - IG_USER = 'imagegenius'
+  - IG_REPO = 'docker-baseimage-immich'
+  - CONTAINER_NAME = 'baseimage-immich'
+  - DIST_IMAGE = 'ubuntu'
+  - MULTIARCH = 'true'
+  - CI = 'false'
+  - CI_WEB = ''
+  - CI_PORT = ''
+  - CI_SSL = 'false'
+  - CI_DOCKERENV = ''
+  - CI_AUTH = ''
+  - CI_WEBPATH = ''
+

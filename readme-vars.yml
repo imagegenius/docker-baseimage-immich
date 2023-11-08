@@ -1,0 +1,15 @@
+---
+
+# project information
+project_name: baseimage-immich
+full_custom_readme: |
+  {% raw -%}
+  # [imagegenius/baseimage-immich](https://github.com/imagegenius/docker-baseimage-immich)
+
+  [![GitHub Release](https://img.shields.io/github/release/imagegenius/docker-baseimage-immich.svg?color=007EC6&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/imagegenius/docker-baseimage-immich/releases)
+  [![GitHub Package Repository](https://shields.io/badge/GitHub%20Package-blue?logo=github&logoColor=ffffff&style=for-the-badge)](https://github.com/imagegenius/docker-baseimage-immich/packages)
+  [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.imagegenius.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-baseimage-immich%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.imagegenius.io/job/Docker-Pipeline-Builders/job/docker-baseimage-immich/job/master/)
+  [![IG CI](https://img.shields.io/badge/dynamic/yaml?color=007EC6&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.imagegenius.io%2Fbaseimage-immich%2Flatest-master%2Fci-status.yml)](https://ci-tests.imagegenius.io/baseimage-immich/latest-master/index.html)
+  
+  Baseimage used by [imagegenius/immich](https://github.com/imagegenius/docker-immich).
+  {%- endraw %}
