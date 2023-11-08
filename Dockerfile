@@ -16,7 +16,6 @@ RUN \
     bc \
     build-essential \
     g++ \
-    git \
     libexif-dev \
     libexpat1-dev \
     libglib2.0-dev \
@@ -71,10 +70,17 @@ RUN \
     python3-pip \
     python3-venv \
     zlib1g && \
-  echo "**** download immich ****" && \
-  git clone https://github.com/immich-app/base-images/ /tmp/base-images && \
+  echo "**** download immich dependencies ****" && \
+  mkdir -p \
+    /tmp/immich-dependencies && \
+  curl -o \
+    /tmp/immich-dependencies.tar.gz -L \
+    "https://github.com/immich-app/base-images/archive/main.tar.gz" && \
+  tar xf \
+    /tmp/immich-dependencies.tar.gz -C \
+    /tmp/immich-dependencies --strip-components=1 && \
   echo "**** build immich dependencies ****" && \
-  cd /tmp/base-images/server/bin && \
+  cd /tmp/immich-dependencies/server/bin && \
   ./install-ffmpeg.sh && \
   ./build-libraw.sh || ./build-libraw.sh && \
   ./build-imagemagick.sh && \
@@ -85,7 +91,6 @@ RUN \
     bc \
     build-essential \
     g++ \
-    git \
     libexif-dev \
     libexpat1-dev \
     libglib2.0-dev \
