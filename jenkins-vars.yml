@@ -4,8 +4,8 @@
 project_name: docker-baseimage-immich
 external_type: os
 release_type: stable
-release_tag: latest
-ig_branch: main
+release_tag: lunar
+ig_branch: lunar
 repo_vars:
   - BUILD_VERSION_ARG = 'BUILDER_VERSION'
   - IG_USER = 'imagegenius'
