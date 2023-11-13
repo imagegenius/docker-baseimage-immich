@@ -33,7 +33,6 @@ RUN \
     meson \
     ninja-build \
     pkg-config \
-    python3-dev \
     wget && \
   echo "**** install runtime packages ****" && \
   echo "deb [signed-by=/usr/share/keyrings/nodesource-repo.gpg] https://deb.nodesource.com/node_20.x nodistro main" >>/etc/apt/sources.list.d/node.list && \
@@ -66,9 +65,6 @@ RUN \
     nginx \
     nodejs \
     perl \
-    python3 \
-    python3-pip \
-    python3-venv \
     zlib1g && \
   echo "**** download immich dependencies ****" && \
   mkdir -p \
@@ -108,7 +104,6 @@ RUN \
     meson \
     ninja-build \
     pkg-config \
-    python3-dev \
     wget && \
   apt-get autoremove -y --purge && \
   apt-get clean && \
