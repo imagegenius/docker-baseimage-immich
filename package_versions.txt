@@ -448,7 +448,6 @@ perl                                5.36.0-7ubuntu0.23.04.1            deb
 perl-base                           5.36.0-7ubuntu0.23.04.1            deb     
 perl-modules-5.36                   5.36.0-7ubuntu0.23.04.1            deb     
 pinentry-curses                     1.2.1-1ubuntu1                     deb     
-pip                                 23.0.1                             python  
 postcss-selector-parser             6.0.13                             npm     
 proc-log                            3.0.0                              npm     
 process                             0.11.10                            npm     
@@ -460,19 +459,9 @@ promise-retry                       2.0.1                              npm
 promzard                            1.0.0                              npm     
 publicsuffix                        20230209.2326-1                    deb     
 python3                             3.11.2-1                           deb     
-python3-distutils                   3.11.2-2                           deb     
-python3-lib2to3                     3.11.2-2                           deb     
 python3-minimal                     3.11.2-1                           deb     
-python3-pip                         23.0.1+dfsg-1ubuntu0.1             deb     
-python3-pip-whl                     23.0.1+dfsg-1ubuntu0.1             deb     
-python3-pkg-resources               66.1.1-1                           deb     
-python3-setuptools                  66.1.1-1                           deb     
-python3-setuptools-whl              66.1.1-1                           deb     
-python3-venv                        3.11.2-1                           deb     
-python3-wheel                       0.38.4-1                           deb     
 python3.11                          3.11.4-1~23.04                     deb     
 python3.11-minimal                  3.11.4-1~23.04                     deb     
-python3.11-venv                     3.11.4-1~23.04                     deb     
 qrcode-terminal                     0.12.0                             npm     
 read                                2.1.0                              npm     
 read-cmd-shim                       4.0.0                              npm     
@@ -489,7 +478,6 @@ sed                                 4.9-1                              deb
 semver                              7.5.4                              npm     
 sensible-utils                      0.0.17+nmu1                        deb     
 set-blocking                        2.0.0                              npm     
-setuptools                          66.1.1                             python  
 shared-mime-info                    2.2-1                              deb     
 shebang-command                     2.0.0                              npm     
 shebang-regex                       3.0.0                              npm     
@@ -531,7 +519,6 @@ validate-npm-package-license        3.0.4                              npm
 validate-npm-package-name           5.0.0                              npm     
 walk-up-path                        3.0.1                              npm     
 wcwidth                             1.0.1                              npm     
-wheel                               0.38.4                             python  
 which                               2.0.2                              npm     
 which                               4.0.0                              npm     
 wide-align                          1.1.5                              npm     
