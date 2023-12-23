@@ -35,23 +35,24 @@ RUN \
     libltdl-dev \
     libmojolicious-perl \
     libnet-ssleay-perl \
+    liborc-0.4-dev \
     libpath-tiny-perl \
     libpkgconfig-perl \
-    liborc-0.4-dev \
     librsvg2-dev \
     libsort-versions-perl \
     libspng-dev \
     libterm-table-perl \
-    libtest-warnings-perl \
     libtest-fatal-perl \
     libtest-needs-perl \
+    libtest-warnings-perl \
     libtest2-suite-perl \
     libtool \
-    libtry-tiny-perl \
+    libtry-tiny-perl \\
     libwebp-dev \
     make \
-    unzip \
+    menson \
     pkg-config \
+    unzip \
     wget && \
   echo "**** install runtime packages ****" && \
   echo "deb [signed-by=/usr/share/keyrings/nodesource-repo.gpg] https://deb.nodesource.com/node_20.x nodistro main" >>/etc/apt/sources.list.d/node.list && \
@@ -128,15 +129,15 @@ RUN \
     libcapture-tiny-perl \
     libexif-dev \
     libexpat1-dev \
-    libglib2.0-dev \
-    libgsf-1-dev \
-    libheif-dev \
     libffi-checklib-perl \
     libfile-chdir-perl \
     libfile-slurper-perl \
     libfile-which-perl \
     libglib2.0-dev \
+    libglib2.0-dev \
     libgsf-1-dev \
+    libgsf-1-dev \
+    libheif-dev \
     libheif-dev \
     libio-socket-ssl-perl \
     libjpeg-dev \
@@ -144,21 +145,22 @@ RUN \
     libltdl-dev \
     libmojolicious-perl \
     libnet-ssleay-perl \
+    liborc-0.4-dev \
     libpath-tiny-perl \
     libpkgconfig-perl \
-    liborc-0.4-dev \
     librsvg2-dev \
     libsort-versions-perl \
     libspng-dev \
     libterm-table-perl \
-    libtest-warnings-perl \
     libtest-fatal-perl \
     libtest-needs-perl \
+    libtest-warnings-perl \
     libtest2-suite-perl \
     libtool \
     libtry-tiny-perl \
     libwebp-dev \
     make \
+    menson \
     pkg-config \
     unzip \
     wget && \
