@@ -47,7 +47,7 @@ RUN \
     libtest-warnings-perl \
     libtest2-suite-perl \
     libtool \
-    libtry-tiny-perl \\
+    libtry-tiny-perl \
     libwebp-dev \
     make \
     menson \
