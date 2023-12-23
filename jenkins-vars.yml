@@ -4,7 +4,7 @@
 project_name: docker-baseimage-immich
 external_type: os
 release_type: stable
-release_tag: main
+release_tag: latest
 ig_branch: main
 repo_vars:
   - BUILD_VERSION_ARG = 'BUILDER_VERSION'
