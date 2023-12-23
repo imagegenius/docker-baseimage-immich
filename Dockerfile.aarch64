@@ -50,7 +50,7 @@ RUN \
     libtry-tiny-perl \
     libwebp-dev \
     make \
-    menson \
+    meson \
     pkg-config \
     unzip \
     wget && \
@@ -160,7 +160,7 @@ RUN \
     libtry-tiny-perl \
     libwebp-dev \
     make \
-    menson \
+    meson \
     pkg-config \
     unzip \
     wget && \
