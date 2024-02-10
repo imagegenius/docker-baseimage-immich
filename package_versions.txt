@@ -304,7 +304,7 @@ libspng0                            0.7.4-1                            deb
 libsqlite3-0                        3.42.0-1ubuntu0.1                  deb     
 libss2                              1.47.0-1ubuntu1                    deb     
 libssh-4                            0.10.5-3ubuntu1.2                  deb     
-libssl3                             3.0.10-1ubuntu2.1                  deb     
+libssl3                             3.0.10-1ubuntu2.2                  deb     
 libstdc++6                          13.2.0-4ubuntu3                    deb     
 libsystemd0                         252.5-2ubuntu3                     deb     
 libtasn1-6                          4.19.0-2                           deb     
@@ -398,7 +398,7 @@ npm-registry-fetch                  16.1.0                             npm
 npm-user-validate                   2.0.0                              npm     
 npmlog                              7.0.1                              npm     
 ocl-icd-libopencl1                  2.3.2-1                            deb     
-openssl                             3.0.10-1ubuntu2.1                  deb     
+openssl                             3.0.10-1ubuntu2.2                  deb     
 p-map                               4.0.0                              npm     
 pacote                              17.0.4                             npm     
 parse-conflict-json                 3.0.1                              npm     
