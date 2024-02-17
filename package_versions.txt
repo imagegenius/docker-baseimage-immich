@@ -143,7 +143,7 @@ is-lambda                           1.0.1                              npm
 isexe                               2.0.0                              npm     
 isexe                               3.1.1                              npm     
 jackspeak                           2.3.6                              npm     
-jellyfin-ffmpeg6                    6.0-4-bookworm                     deb     
+jellyfin-ffmpeg6                    6.0.1-2-bookworm                   deb     
 jq                                  1.6-3                              deb     
 json-parse-even-better-errors       3.0.0                              npm     
 json-stringify-nice                 1.1.4                              npm     
@@ -382,7 +382,7 @@ negotiator                          0.6.3                              npm
 netbase                             6.4                                deb     
 netcat-traditional                  1.10-47                            deb     
 node-gyp                            10.0.1                             npm     
-nodejs                              20.11.0-1nodesource1               deb     
+nodejs                              20.11.1-1nodesource1               deb     
 nopt                                7.2.0                              npm     
 normalize-package-data              6.0.0                              npm     
 npm                                 10.2.4                             npm     
