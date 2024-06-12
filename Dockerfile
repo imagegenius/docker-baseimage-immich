@@ -60,6 +60,7 @@ RUN \
   apt-get update && \
   apt-get install --no-install-recommends -y \
     intel-media-va-driver-non-free \
+    intel-opencl-icd \
     libexif12 \
     libexpat1 \
     libgcc-s1 \
