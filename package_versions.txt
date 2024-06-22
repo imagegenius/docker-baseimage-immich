@@ -401,7 +401,7 @@ negotiator                          0.6.3                              npm
 netbase                             6.4                                deb                    
 netcat-traditional                  1.10-47                            deb                    
 node-gyp                            10.1.0                             npm                    
-nodejs                              20.14.0-1nodesource1               deb                    
+nodejs                              20.15.0-1nodesource1               deb                    
 nopt                                7.2.0                              npm                    
 normalize-package-data              6.0.0                              npm                    
 npm                                 10.7.0                             npm                    
