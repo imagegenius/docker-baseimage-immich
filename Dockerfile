@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/imagegenius/baseimage-ubuntu:mantic
+FROM ghcr.io/imagegenius/baseimage-ubuntu:noble
 
 # set version label
 ARG BUILD_DATE
@@ -60,7 +60,6 @@ RUN \
   apt-get update && \
   apt-get install --no-install-recommends -y \
     intel-media-va-driver-non-free \
-    intel-opencl-icd \
     libexif12 \
     libexpat1 \
     libgcc-s1 \
@@ -88,7 +87,19 @@ RUN \
     nodejs \
     perl \
     zlib1g && \
-    echo "**** download immich dependencies ****" && \
+  echo "**** install intel dependencies ****" && \
+  apt-get install --no-install-recommends -y \
+    intel-media-va-driver-non-free \
+    ocl-icd-libopencl1 && \
+  INTEL_DEPENDENCIES=$(curl -sX GET "https://api.github.com/repos/intel/compute-runtime/releases/latest" | jq -r '.body' | grep wget | grep -v .sum | grep -v .ddeb | sed 's|wget ||g') && \
+  mkdir -p /tmp/intel && \
+  for i in $INTEL_DEPENDENCIES; do \
+    curl -fS --retry 3 --retry-connrefused -o \
+      /tmp/intel/$(basename "${i%$'\r'}") -L \
+      "${i%$'\r'}"; \
+  done && \
+  dpkg -i /tmp/intel/*.deb; \
+  echo "**** download immich dependencies ****" && \
   mkdir -p \
     /tmp/immich-dependencies && \
   curl -o \
