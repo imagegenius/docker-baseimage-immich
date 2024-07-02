@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/imagegenius/baseimage-ubuntu:arm64v8-mantic
+FROM ghcr.io/imagegenius/baseimage-ubuntu:arm64v8-noble
 
 # set version label
 ARG BUILD_DATE
@@ -97,7 +97,12 @@ RUN \
     /tmp/immich-dependencies --strip-components=1 && \
   echo "**** build immich dependencies ****" && \
   cd /tmp/immich-dependencies/server/bin && \
-  ./install-ffmpeg.sh && \
+  FFMPEG_VERSION=$(jq -cr '.packages[] | select(.name == "ffmpeg").version' /tmp/immich-dependencies/server/bin/build-lock.json) && \
+  curl -o \
+    /tmp/ffmpeg.deb -L \
+    "https://github.com/jellyfin/jellyfin-ffmpeg/releases/download/v${FFMPEG_VERSION}/jellyfin-ffmpeg6_${FFMPEG_VERSION}-noble_arm64.deb" && \
+  apt-get install --no-install-recommends -y -f \
+    /tmp/ffmpeg.deb && \
   ./build-libraw.sh && \
   ./build-imagemagick.sh && \
   ./build-libvips.sh && \
