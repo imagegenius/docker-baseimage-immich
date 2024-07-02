@@ -8,6 +8,8 @@ ARG VERSION
 LABEL build_version="ImageGenius Version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="hydazz, martabal"
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 RUN \
   echo "**** install build packages ****" && \
   apt-get update && \
@@ -110,7 +112,12 @@ RUN \
     /tmp/immich-dependencies --strip-components=1 && \
   echo "**** build immich dependencies ****" && \
   cd /tmp/immich-dependencies/server/bin && \
-  ./install-ffmpeg.sh && \
+  FFMPEG_VERSION=$(jq -cr '.packages[] | select(.name == "ffmpeg").version' /tmp/immich-dependencies/server/bin/build-lock.json) && \
+  curl -o \
+    /tmp/ffmpeg.deb -L \
+    "https://github.com/jellyfin/jellyfin-ffmpeg/releases/download/v${FFMPEG_VERSION}/jellyfin-ffmpeg6_${FFMPEG_VERSION}-noble_amd64.deb" && \
+  apt-get install --no-install-recommends -y -f \
+    /tmp/ffmpeg.deb && \
   ./build-libraw.sh && \
   ./build-imagemagick.sh && \
   ./build-libvips.sh && \
