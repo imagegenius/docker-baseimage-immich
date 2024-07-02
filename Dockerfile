@@ -1,12 +1,14 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/imagegenius/baseimage-ubuntu:mantic
+FROM ghcr.io/imagegenius/baseimage-ubuntu:noble
 
 # set version label
 ARG BUILD_DATE
 ARG VERSION
 LABEL build_version="ImageGenius Version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="hydazz, martabal"
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN \
   echo "**** install build packages ****" && \
@@ -60,7 +62,6 @@ RUN \
   apt-get update && \
   apt-get install --no-install-recommends -y \
     intel-media-va-driver-non-free \
-    intel-opencl-icd \
     libexif12 \
     libexpat1 \
     libgcc-s1 \
@@ -88,7 +89,19 @@ RUN \
     nodejs \
     perl \
     zlib1g && \
-    echo "**** download immich dependencies ****" && \
+  echo "**** install intel dependencies ****" && \
+  apt-get install --no-install-recommends -y \
+    intel-media-va-driver-non-free \
+    ocl-icd-libopencl1 && \
+  INTEL_DEPENDENCIES=$(curl -sX GET "https://api.github.com/repos/intel/compute-runtime/releases/latest" | jq -r '.body' | grep wget | grep -v .sum | grep -v .ddeb | sed 's|wget ||g') && \
+  mkdir -p /tmp/intel && \
+  for i in $INTEL_DEPENDENCIES; do \
+    curl -fS --retry 3 --retry-connrefused -o \
+      /tmp/intel/$(basename "${i%$'\r'}") -L \
+      "${i%$'\r'}"; \
+  done && \
+  dpkg -i /tmp/intel/*.deb; \
+  echo "**** download immich dependencies ****" && \
   mkdir -p \
     /tmp/immich-dependencies && \
   curl -o \
@@ -99,7 +112,12 @@ RUN \
     /tmp/immich-dependencies --strip-components=1 && \
   echo "**** build immich dependencies ****" && \
   cd /tmp/immich-dependencies/server/bin && \
-  ./install-ffmpeg.sh && \
+  FFMPEG_VERSION=$(jq -cr '.packages[] | select(.name == "ffmpeg").version' /tmp/immich-dependencies/server/bin/build-lock.json) && \
+  curl -o \
+    /tmp/ffmpeg.deb -L \
+    "https://github.com/jellyfin/jellyfin-ffmpeg/releases/download/v${FFMPEG_VERSION}/jellyfin-ffmpeg6_${FFMPEG_VERSION}-noble_amd64.deb" && \
+  apt-get install --no-install-recommends -y -f \
+    /tmp/ffmpeg.deb && \
   ./build-libraw.sh && \
   ./build-imagemagick.sh && \
   ./build-libvips.sh && \
