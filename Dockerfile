@@ -118,6 +118,9 @@ RUN \
     "https://github.com/jellyfin/jellyfin-ffmpeg/releases/download/v${FFMPEG_VERSION}/jellyfin-ffmpeg6_${FFMPEG_VERSION}-noble_amd64.deb" && \
   apt-get install --no-install-recommends -y -f \
     /tmp/ffmpeg.deb && \
+  ldconfig /usr/lib/jellyfin-ffmpeg/lib && \
+  ln -s /usr/lib/jellyfin-ffmpeg/ffmpeg /usr/bin && \
+  ln -s /usr/lib/jellyfin-ffmpeg/ffprobe /usr/bin && \
   ./build-libraw.sh && \
   ./build-imagemagick.sh && \
   ./build-libvips.sh && \
