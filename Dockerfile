@@ -18,7 +18,6 @@ RUN \
     bc \
     build-essential \
     cpanminus \
-    g++ \
     git \
     libany-uri-escape-perl \
     libcapture-tiny-perl \
@@ -51,7 +50,6 @@ RUN \
     libtool \
     libtry-tiny-perl \
     libwebp-dev \
-    make \
     meson \
     pkg-config \
     unzip \
@@ -152,7 +150,6 @@ RUN \
     bc \
     build-essential \
     cpanminus \
-    g++ \
     git \
     libany-uri-escape-perl \
     libcapture-tiny-perl \
@@ -163,10 +160,7 @@ RUN \
     libfile-slurper-perl \
     libfile-which-perl \
     libglib2.0-dev \
-    libglib2.0-dev \
     libgsf-1-dev \
-    libgsf-1-dev \
-    libheif-dev \
     libheif-dev \
     libio-socket-ssl-perl \
     libjpeg-dev \
@@ -188,7 +182,6 @@ RUN \
     libtool \
     libtry-tiny-perl \
     libwebp-dev \
-    make \
     meson \
     pkg-config \
     unzip \
