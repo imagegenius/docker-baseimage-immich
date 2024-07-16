@@ -17,41 +17,22 @@ RUN \
     autoconf \
     bc \
     build-essential \
-    cpanminus \
-    g++ \
+    cmake \
     git \
-    libany-uri-escape-perl \
-    libcapture-tiny-perl \
+    libdav1d-dev \
+    libde265-dev \
     libexif-dev \
     libexpat1-dev \
-    libffi-checklib-perl \
-    libfile-chdir-perl \
-    libfile-slurper-perl \
-    libfile-which-perl \
     libglib2.0-dev \
     libgsf-1-dev \
-    libheif-dev \
-    libio-socket-ssl-perl \
     libjpeg-dev \
     libjxl-dev \
     libltdl-dev \
-    libmojolicious-perl \
-    libnet-ssleay-perl \
     liborc-0.4-dev \
-    libpath-tiny-perl \
-    libpkgconfig-perl \
     librsvg2-dev \
-    libsort-versions-perl \
     libspng-dev \
-    libterm-table-perl \
-    libtest-fatal-perl \
-    libtest-needs-perl \
-    libtest-warnings-perl \
-    libtest2-suite-perl \
     libtool \
-    libtry-tiny-perl \
     libwebp-dev \
-    make \
     meson \
     pkg-config \
     unzip \
@@ -62,13 +43,15 @@ RUN \
   apt-get update && \
   apt-get install --no-install-recommends -y \
     intel-media-va-driver-non-free \
+    libdav1d7 \
+    libde265-0 \
     libexif12 \
     libexpat1 \
     libgcc-s1 \
     libglib2.0-0 \
     libgomp1 \
     libgsf-1-114 \
-    libheif1 \
+    libio-compress-brotli-perl \
     libjxl0.7 \
     liblcms2-2 \
     liblqr-1-0 \
@@ -121,10 +104,10 @@ RUN \
   ldconfig /usr/lib/jellyfin-ffmpeg/lib && \
   ln -s /usr/lib/jellyfin-ffmpeg/ffmpeg /usr/bin && \
   ln -s /usr/lib/jellyfin-ffmpeg/ffprobe /usr/bin && \
+  ./build-libheif.sh && \
   ./build-libraw.sh && \
   ./build-imagemagick.sh && \
   ./build-libvips.sh && \
-  ./build-perllib-compress-brotli.sh && \
   mkdir -p \
     /app/immich/server && \
   mv \
@@ -151,44 +134,22 @@ RUN \
     autoconf \
     bc \
     build-essential \
-    cpanminus \
-    g++ \
+    cmake \
     git \
-    libany-uri-escape-perl \
-    libcapture-tiny-perl \
+    libdav1d-dev \
+    libde265-dev \
     libexif-dev \
     libexpat1-dev \
-    libffi-checklib-perl \
-    libfile-chdir-perl \
-    libfile-slurper-perl \
-    libfile-which-perl \
-    libglib2.0-dev \
     libglib2.0-dev \
     libgsf-1-dev \
-    libgsf-1-dev \
-    libheif-dev \
-    libheif-dev \
-    libio-socket-ssl-perl \
     libjpeg-dev \
     libjxl-dev \
     libltdl-dev \
-    libmojolicious-perl \
-    libnet-ssleay-perl \
     liborc-0.4-dev \
-    libpath-tiny-perl \
-    libpkgconfig-perl \
     librsvg2-dev \
-    libsort-versions-perl \
     libspng-dev \
-    libterm-table-perl \
-    libtest-fatal-perl \
-    libtest-needs-perl \
-    libtest-warnings-perl \
-    libtest2-suite-perl \
     libtool \
-    libtry-tiny-perl \
     libwebp-dev \
-    make \
     meson \
     pkg-config \
     unzip \
@@ -199,6 +160,5 @@ RUN \
     /tmp/* \
     /var/tmp/* \
     /var/lib/apt/lists/* \
-    /root/.cpanm \
     /etc/apt/sources.list.d/node.list \
     /usr/share/keyrings/nodesource.gpg
