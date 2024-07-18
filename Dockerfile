@@ -125,6 +125,9 @@ RUN \
   curl -o \
     /app/immich/server/geodata/admin2Codes.txt -L \
     "https://download.geonames.org/export/dump/admin2Codes.txt" && \
+  curl -o \
+    /app/immich/server/geodata/ne_10m_admin_0_countries.geojson -L \
+    "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_10m_admin_0_countries.geojson" && \
   unzip \
     /tmp/cities500.zip -d \
     /app/immich/server/geodata && \
