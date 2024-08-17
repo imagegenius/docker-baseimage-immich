@@ -265,7 +265,7 @@ libopenexr-3-1-30                   3.1.5-5.1build3                    deb
 libopenjp2-7                        2.5.0-2build3                      deb                    
 libopenmpt0t64                      0.7.3-1.1build3                    deb                    
 libopus0                            1.4-1build1                        deb                    
-liborc-0.4-0t64                     1:0.4.38-1build1                   deb                    
+liborc-0.4-0t64                     1:0.4.38-1ubuntu0.1                deb                    
 libp11-kit0                         0.25.3-4ubuntu2                    deb                    
 libpam-modules                      1.5.3-5ubuntu5.1                   deb                    
 libpam-modules-bin                  1.5.3-5ubuntu5.1                   deb                    
@@ -304,7 +304,7 @@ libspng0                            0.7.4-1build1                      deb
 libsqlite3-0                        3.45.1-1ubuntu2                    deb                    
 libss2                              1.47.0-2.4~exp1ubuntu4             deb                    
 libssh-4                            0.10.6-2build2                     deb                    
-libssl3t64                          3.0.13-0ubuntu3.1                  deb                    
+libssl3t64                          3.0.13-0ubuntu3.2                  deb                    
 libstdc++6                          14-20240412-0ubuntu1               deb                    
 libsystemd0                         255.4-1ubuntu8.2                   deb                    
 libtasn1-6                          4.19.0-3build1                     deb                    
@@ -407,7 +407,7 @@ npm-profile                         10.0.0                             npm
 npm-registry-fetch                  17.0.1                             npm                    
 npm-user-validate                   2.0.1                              npm                    
 ocl-icd-libopencl1                  2.3.2-1build1                      deb                    
-openssl                             3.0.13-0ubuntu3.1                  deb                    
+openssl                             3.0.13-0ubuntu3.2                  deb                    
 p-map                               4.0.0                              npm                    
 pacote                              18.0.6                             npm                    
 parse-conflict-json                 3.0.1                              npm                    
