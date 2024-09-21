@@ -64,7 +64,7 @@ cron                                3.0pl1-184ubuntu2                  deb
 cron-daemon-common                  3.0pl1-184ubuntu2                  deb                    
 cross-spawn                         7.0.3                              npm                    
 cssesc                              3.0.0                              npm                    
-curl                                8.5.0-2ubuntu10.3                  deb                    
+curl                                8.5.0-2ubuntu10.4                  deb                    
 dash                                0.5.12-6ubuntu5                    deb                    
 debconf                             1.5.86ubuntu1                      deb                    
 debianutils                         5.17build1                         deb                    
@@ -116,11 +116,13 @@ indent-string                       4.0.0                              npm
 ini                                 4.1.3                              npm                    
 init-package-json                   6.0.3                              npm                    
 init-system-helpers                 1.66ubuntu1                        deb                    
-intel-igc-core                      1.0.17384.11                       deb                    
-intel-igc-opencl                    1.0.17384.11                       deb                    
-intel-level-zero-gpu                1.3.30508.7                        deb                    
+intel-igc-core                      1.0.17537.20                       deb                    
+intel-igc-opencl                    1.0.17537.20                       deb                    
+intel-level-zero-gpu                1.3.30872.22                       deb                    
+intel-level-zero-gpu-legacy1        1.3.30872.22                       deb                    
 intel-media-va-driver-non-free      24.1.0+ds1-1                       deb                    
-intel-opencl-icd                    24.31.30508.7                      deb                    
+intel-opencl-icd                    24.35.30872.22                     deb                    
+intel-opencl-icd-legacy1            24.35.30872.22                     deb                    
 ip-address                          9.0.5                              npm                    
 ip-regex                            5.0.0                              npm                    
 is-cidr                             5.1.0                              npm                    
@@ -158,7 +160,7 @@ libcap-ng0                          0.8.4-2build2                      deb
 libcap2                             1:2.66-5ubuntu2                    deb                    
 libcom-err2                         1.47.0-2.4~exp1ubuntu4.1           deb                    
 libcrypt1                           1:4.4.36-4build1                   deb                    
-libcurl4t64                         8.5.0-2ubuntu10.3                  deb                    
+libcurl4t64                         8.5.0-2ubuntu10.4                  deb                    
 libdatrie1                          0.2.13-3build1                     deb                    
 libdav1d7                           1.4.1-1build1                      deb                    
 libdb5.3t64                         5.3.28+dfsg2-7                     deb                    
@@ -213,7 +215,7 @@ libhogweed6t64                      3.9.1-2.2build1.1                  deb
 libhwy1t64                          1.0.7-8.1build1                    deb                    
 libicu74                            74.2-1ubuntu3.1                    deb                    
 libidn2-0                           2.3.7-2build1                      deb                    
-libigdgmm12                         22.4.1                             deb                    
+libigdgmm12                         22.5.0                             deb                    
 libimath-3-1-29t64                  3.1.9-3.1ubuntu2                   deb                    
 libio-compress-brotli-perl          0.004001-2build3                   deb                    
 libjbig0                            2.1-6.1ubuntu2                     deb                    
@@ -279,8 +281,8 @@ libpng16-16t64                      1.6.43-5build1                     deb
 libproc2-0                          2:4.0.4-4ubuntu3                   deb                    
 libpsl5t64                          0.21.2-1.1build1                   deb                    
 libpython3-stdlib                   3.12.3-0ubuntu2                    deb                    
-libpython3.12-minimal               3.12.3-1ubuntu0.1                  deb                    
-libpython3.12-stdlib                3.12.3-1ubuntu0.1                  deb                    
+libpython3.12-minimal               3.12.3-1ubuntu0.2                  deb                    
+libpython3.12-stdlib                3.12.3-1ubuntu0.2                  deb                    
 libreadline8t64                     8.2-4build1                        deb                    
 librsvg2-2                          2.58.0+dfsg-1build1                deb                    
 librsvg2-common                     2.58.0+dfsg-1build1                deb                    
@@ -428,8 +430,8 @@ promzard                            1.0.2                              npm
 publicsuffix                        20231001.0357-0.1                  deb                    
 python3                             3.12.3-0ubuntu2                    deb                    
 python3-minimal                     3.12.3-0ubuntu2                    deb                    
-python3.12                          3.12.3-1ubuntu0.1                  deb                    
-python3.12-minimal                  3.12.3-1ubuntu0.1                  deb                    
+python3.12                          3.12.3-1ubuntu0.2                  deb                    
+python3.12-minimal                  3.12.3-1ubuntu0.2                  deb                    
 qrcode-terminal                     0.12.0                             npm                    
 read                                3.0.1                              npm                    
 read-cmd-shim                       4.0.0                              npm                    
