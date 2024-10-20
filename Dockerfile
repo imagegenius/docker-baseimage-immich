@@ -5,12 +5,24 @@ FROM ghcr.io/imagegenius/baseimage-ubuntu:noble
 # set version label
 ARG BUILD_DATE
 ARG VERSION
+
+ARG LATEST_UBUNTU_VERSION="oracular"
+
 LABEL build_version="ImageGenius Version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="hydazz, martabal"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN \
+  mkdir -p \
+    /app/immich/server/geodata \
+    /tmp/immich-dependencies && \
+  UBUNTU_REPO="http://archive.ubuntu.com/ubuntu/" && \
+  printf "deb ${UBUNTU_REPO} ${LATEST_UBUNTU_VERSION} main restricted universe multiverse\ndeb-src ${UBUNTU_REPO} ${LATEST_UBUNTU_VERSION} main restricted universe multiverse" >> /etc/apt/sources.list && \
+  printf "Package: *\nPin: release n=${LATEST_UBUNTU_VERSION}\nPin-Priority: 450" > /etc/apt/preferences.d/preferences && \
+  echo "deb [signed-by=/usr/share/keyrings/nodesource-repo.gpg] https://deb.nodesource.com/node_20.x nodistro main" >>/etc/apt/sources.list.d/node.list && \
+  curl -s https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource-repo.gpg >/dev/null && \
+  apt-get update && \
   echo "**** install build packages ****" && \
   apt-get update && \
   apt-get install --no-install-recommends -y \
@@ -19,30 +31,27 @@ RUN \
     build-essential \
     cmake \
     git \
-    libdav1d-dev \
     libde265-dev \
     libexif-dev \
     libexpat1-dev \
     libglib2.0-dev \
     libgsf-1-dev \
     libjpeg-dev \
-    libjxl-dev \
     libltdl-dev \
-    liborc-0.4-dev \
+    libbrotli-dev \
     librsvg2-dev \
     libspng-dev \
     libtool \
     libwebp-dev \
     meson \
     pkg-config \
-    unzip \
-    wget && \
+    unzip && \
+  apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
+    libdav1d-dev \
+    libhwy-dev \
+    libwebp-dev && \
   echo "**** install runtime packages ****" && \
-  echo "deb [signed-by=/usr/share/keyrings/nodesource-repo.gpg] https://deb.nodesource.com/node_20.x nodistro main" >>/etc/apt/sources.list.d/node.list && \
-  curl -s https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource-repo.gpg >/dev/null && \
-  apt-get update && \
   apt-get install --no-install-recommends -y \
-    intel-media-va-driver-non-free \
     libdav1d7 \
     libde265-0 \
     libexif12 \
@@ -52,26 +61,26 @@ RUN \
     libgomp1 \
     libgsf-1-114 \
     libio-compress-brotli-perl \
-    libjxl0.7 \
     liblcms2-2 \
     liblqr-1-0 \
     libltdl7 \
     libmimalloc2.0 \
     libopenexr-3-1-30 \
     libopenjp2-7 \
-    liborc-0.4-0 \
     libpng16-16 \
     librsvg2-2 \
     libspng0 \
-    libwebp7 \
-    libwebpdemux2 \
-    libwebpmux3 \
     mesa-utils \
     mesa-va-drivers \
     mesa-vulkan-drivers \
     nodejs \
     perl \
     zlib1g && \
+  apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
+    libhwy1t64 \
+    libwebp7 \
+    libwebpdemux2 \
+    libwebpmux3 && \
   echo "**** install intel dependencies ****" && \
   apt-get install --no-install-recommends -y \
     intel-media-va-driver-non-free \
@@ -98,24 +107,23 @@ RUN \
   FFMPEG_VERSION=$(jq -cr '.packages[] | select(.name == "ffmpeg").version' /tmp/immich-dependencies/server/bin/build-lock.json) && \
   curl -o \
     /tmp/ffmpeg.deb -L \
-    "https://github.com/jellyfin/jellyfin-ffmpeg/releases/download/v${FFMPEG_VERSION}/jellyfin-ffmpeg6_${FFMPEG_VERSION}-noble_amd64.deb" && \
+    "https://github.com/jellyfin/jellyfin-ffmpeg/releases/download/v${FFMPEG_VERSION}/jellyfin-ffmpeg7_${FFMPEG_VERSION}-noble_amd64.deb" && \
   apt-get install --no-install-recommends -y -f \
     /tmp/ffmpeg.deb && \
   ldconfig /usr/lib/jellyfin-ffmpeg/lib && \
   ln -s /usr/lib/jellyfin-ffmpeg/ffmpeg /usr/bin && \
   ln -s /usr/lib/jellyfin-ffmpeg/ffprobe /usr/bin && \
+  ./build-libjxl.sh \
+    --JPEGLI_LIBJPEG_LIBRARY_SOVERSION 8 \
+    --JPEGLI_LIBJPEG_LIBRARY_VERSION 8.2.2 && \
   ./build-libheif.sh && \
   ./build-libraw.sh && \
   ./build-imagemagick.sh && \
   ./build-libvips.sh && \
-  mkdir -p \
-    /app/immich/server && \
   mv \
     /tmp/immich-dependencies/server/bin/build-lock.json \
     /app/immich/server && \
   echo "**** download geocoding data ****" && \
-  mkdir -p \
-    /app/immich/server/geodata && \
   curl -o \
     /tmp/cities500.zip -L \
     "https://download.geonames.org/export/dump/cities500.zip" && \
@@ -145,23 +153,24 @@ RUN \
     libexpat1-dev \
     libglib2.0-dev \
     libgsf-1-dev \
+    libheif-dev \
+    libhwy-dev \
     libjpeg-dev \
-    libjxl-dev \
     libltdl-dev \
-    liborc-0.4-dev \
+    libbrotli-dev \
     librsvg2-dev \
     libspng-dev \
     libtool \
     libwebp-dev \
     meson \
     pkg-config \
-    unzip \
-    wget && \
+    unzip && \
   apt-get autoremove -y --purge && \
   apt-get clean && \
   rm -rf \
-    /tmp/* \
-    /var/tmp/* \
-    /var/lib/apt/lists/* \
     /etc/apt/sources.list.d/node.list \
-    /usr/share/keyrings/nodesource.gpg
+    /tmp/* \
+    /usr/share/keyrings/nodesource.gpg \
+    /var/lib/apt/lists/* \
+    /var/log/* \
+    /var/tmp/*
