@@ -129,7 +129,7 @@ is-lambda                           1.0.1                              npm
 isexe                               2.0.0                              npm                    
 isexe                               3.1.1                              npm                    
 jackspeak                           3.4.0                              npm                    
-jellyfin-ffmpeg7                    7.0.2-4-noble                      deb                    
+jellyfin-ffmpeg7                    7.0.2-5-noble                      deb                    
 jq                                  1.7.1-3build1                      deb                    
 jsbn                                1.1.0                              npm                    
 json-parse-even-better-errors       3.0.2                              npm                    
@@ -258,7 +258,7 @@ libnuma1                            2.0.18-1build1                     deb
 libogg0                             1.3.5-3build1                      deb                    
 libonig5                            6.9.9-1build1                      deb                    
 libopenexr-3-1-30                   3.1.5-5.1build3                    deb                    
-libopenjp2-7                        2.5.0-2ubuntu0.1                   deb                    
+libopenjp2-7                        2.5.0-2ubuntu0.2                   deb                    
 libopenmpt0t64                      0.7.3-1.1build3                    deb                    
 libopus0                            1.4-1build1                        deb                    
 libp11-kit0                         0.25.3-4ubuntu2.1                  deb                    
@@ -274,7 +274,7 @@ libpcre2-8-0                        10.42-4ubuntu2                     deb
 libperl5.38t64                      5.38.2-3.2build2                   deb                    
 libpixman-1-0                       0.42.2-1build1                     deb                    
 libpng16-16t64                      1.6.43-5build1                     deb                    
-libproc2-0                          2:4.0.4-4ubuntu3.1                 deb                    
+libproc2-0                          2:4.0.4-4ubuntu3.2                 deb                    
 libpsl5t64                          0.21.2-1.1build1                   deb                    
 libpython3-stdlib                   3.12.3-0ubuntu2                    deb                    
 libpython3.12-minimal               3.12.3-1ubuntu0.2                  deb                    
@@ -355,7 +355,7 @@ libzstd1                            1.5.5+dfsg2-2build1.1              deb
 libzvbi-common                      0.2.42-2                           deb                    
 libzvbi0t64                         0.2.42-2                           deb                    
 locales                             2.39-0ubuntu8.3                    deb                    
-login                               1:4.13+dfsg1-4ubuntu3              deb                    
+login                               1:4.13+dfsg1-4ubuntu3.2            deb                    
 logsave                             1.47.0-2.4~exp1ubuntu4.1           deb                    
 lru-cache                           10.2.2                             npm                    
 make-fetch-happen                   13.0.1                             npm                    
@@ -406,7 +406,7 @@ p-map                               4.0.0                              npm
 package-json-from-dist              1.0.0                              npm                    
 pacote                              18.0.6                             npm                    
 parse-conflict-json                 3.0.1                              npm                    
-passwd                              1:4.13+dfsg1-4ubuntu3              deb                    
+passwd                              1:4.13+dfsg1-4ubuntu3.2            deb                    
 path-key                            3.1.1                              npm                    
 path-scurry                         1.11.1                             npm                    
 perl                                5.38.2-3.2build2                   deb                    
@@ -416,7 +416,7 @@ pinentry-curses                     1.2.1-3ubuntu5                     deb
 postcss-selector-parser             6.1.0                              npm                    
 proc-log                            3.0.0                              npm                    
 proc-log                            4.2.0                              npm                    
-procps                              2:4.0.4-4ubuntu3.1                 deb                    
+procps                              2:4.0.4-4ubuntu3.2                 deb                    
 proggy                              2.0.0                              npm                    
 promise-all-reject-late             1.0.1                              npm                    
 promise-call-limit                  3.0.1                              npm                    
