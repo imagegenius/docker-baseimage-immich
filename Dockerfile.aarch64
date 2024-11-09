@@ -29,6 +29,7 @@ RUN \
     build-essential \
     cmake \
     git \
+    libbrotli-dev \
     libde265-dev \
     libexif-dev \
     libexpat1-dev \
@@ -36,13 +37,13 @@ RUN \
     libgsf-1-dev \
     libjpeg-dev \
     libltdl-dev \
-    libbrotli-dev \
     librsvg2-dev \
     libspng-dev \
     libtool \
     libwebp-dev \
     meson \
     pkg-config \
+    postgresql-client \
     unzip && \
   apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
     libdav1d-dev \
