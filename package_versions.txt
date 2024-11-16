@@ -129,7 +129,7 @@ is-lambda                           1.0.1                              npm
 isexe                               2.0.0                              npm                    
 isexe                               3.1.1                              npm                    
 jackspeak                           3.4.0                              npm                    
-jellyfin-ffmpeg7                    7.0.2-5-noble                      deb                    
+jellyfin-ffmpeg7                    7.0.2-7-noble                      deb                    
 jq                                  1.7.1-3build1                      deb                    
 jsbn                                1.1.0                              npm                    
 json-parse-even-better-errors       3.0.2                              npm                    
