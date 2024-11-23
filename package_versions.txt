@@ -58,13 +58,13 @@ cmd-shim                            6.0.3                              npm
 color-convert                       2.0.1                              npm                    
 color-name                          1.1.4                              npm                    
 common-ancestor-path                1.0.1                              npm                    
-corepack                            0.29.3                             npm                    
+corepack                            0.29.4                             npm                    
 coreutils                           9.4-3ubuntu6                       deb                    
 cron                                3.0pl1-184ubuntu2                  deb                    
 cron-daemon-common                  3.0pl1-184ubuntu2                  deb                    
 cross-spawn                         7.0.3                              npm                    
 cssesc                              3.0.0                              npm                    
-curl                                8.5.0-2ubuntu10.4                  deb                    
+curl                                8.5.0-2ubuntu10.5                  deb                    
 dash                                0.5.12-6ubuntu5                    deb                    
 debconf                             1.5.86ubuntu1                      deb                    
 debianutils                         5.17build1                         deb                    
@@ -158,7 +158,7 @@ libcap-ng0                          0.8.4-2build2                      deb
 libcap2                             1:2.66-5ubuntu2                    deb                    
 libcom-err2                         1.47.0-2.4~exp1ubuntu4.1           deb                    
 libcrypt1                           1:4.4.36-4build1                   deb                    
-libcurl4t64                         8.5.0-2ubuntu10.4                  deb                    
+libcurl4t64                         8.5.0-2ubuntu10.5                  deb                    
 libdatrie1                          0.2.13-3build1                     deb                    
 libdav1d7                           1.4.3-1                            deb                    
 libdb5.3t64                         5.3.28+dfsg2-7                     deb                    
@@ -195,8 +195,8 @@ libgl1                              1.7.0-1build1                      deb
 libgl1-mesa-dri                     24.0.9-0ubuntu0.2                  deb                    
 libglapi-mesa                       24.0.9-0ubuntu0.2                  deb                    
 libgles2                            1.7.0-1build1                      deb                    
-libglib2.0-0t64                     2.80.0-6ubuntu3.1                  deb                    
-libglib2.0-data                     2.80.0-6ubuntu3.1                  deb                    
+libglib2.0-0t64                     2.80.0-6ubuntu3.2                  deb                    
+libglib2.0-data                     2.80.0-6ubuntu3.2                  deb                    
 libglvnd0                           1.7.0-1build1                      deb                    
 libglx-mesa0                        24.0.9-0ubuntu0.2                  deb                    
 libglx0                             1.7.0-1build1                      deb                    
@@ -278,8 +278,8 @@ libpq5                              16.4-0ubuntu0.24.04.2              deb
 libproc2-0                          2:4.0.4-4ubuntu3.2                 deb                    
 libpsl5t64                          0.21.2-1.1build1                   deb                    
 libpython3-stdlib                   3.12.3-0ubuntu2                    deb                    
-libpython3.12-minimal               3.12.3-1ubuntu0.2                  deb                    
-libpython3.12-stdlib                3.12.3-1ubuntu0.2                  deb                    
+libpython3.12-minimal               3.12.3-1ubuntu0.3                  deb                    
+libpython3.12-stdlib                3.12.3-1ubuntu0.3                  deb                    
 libreadline8t64                     8.2-4build1                        deb                    
 librsvg2-2                          2.58.0+dfsg-1build1                deb                    
 librsvg2-common                     2.58.0+dfsg-1build1                deb                    
@@ -387,7 +387,7 @@ negotiator                          0.6.3                              npm
 netbase                             6.4                                deb                    
 netcat-openbsd                      1.226-1ubuntu2                     deb                    
 node-gyp                            10.1.0                             npm                    
-nodejs                              20.18.0-1nodesource1               deb                    
+nodejs                              20.18.1-1nodesource1               deb                    
 nopt                                7.2.1                              npm                    
 normalize-package-data              6.0.2                              npm                    
 npm                                 10.8.2                             npm                    
@@ -430,8 +430,8 @@ promzard                            1.0.2                              npm
 publicsuffix                        20231001.0357-0.1                  deb                    
 python3                             3.12.3-0ubuntu2                    deb                    
 python3-minimal                     3.12.3-0ubuntu2                    deb                    
-python3.12                          3.12.3-1ubuntu0.2                  deb                    
-python3.12-minimal                  3.12.3-1ubuntu0.2                  deb                    
+python3.12                          3.12.3-1ubuntu0.3                  deb                    
+python3.12-minimal                  3.12.3-1ubuntu0.3                  deb                    
 qrcode-terminal                     0.12.0                             npm                    
 read                                3.0.1                              npm                    
 read-cmd-shim                       4.0.0                              npm                    
