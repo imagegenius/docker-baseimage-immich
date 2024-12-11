@@ -7,6 +7,7 @@ ARG BUILD_DATE
 ARG VERSION
 
 ARG LATEST_UBUNTU_VERSION="oracular"
+ARG CURRENT_UBUNTU_VERSION="noble"
 
 LABEL build_version="ImageGenius Version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="hydazz, martabal"
@@ -20,6 +21,8 @@ RUN \
   printf "Package: *\nPin: release n=${LATEST_UBUNTU_VERSION}\nPin-Priority: 450" > /etc/apt/preferences.d/preferences && \
   echo "deb [signed-by=/usr/share/keyrings/nodesource-repo.gpg] https://deb.nodesource.com/node_20.x nodistro main" >>/etc/apt/sources.list.d/node.list && \
   curl -s https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource-repo.gpg >/dev/null && \
+  curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor > /usr/share/keyrings/pgdg-archive-keyring.gpg && \
+  echo "deb [signed-by=/usr/share/keyrings/pgdg-archive-keyring.gpg] https://apt.postgresql.org/pub/repos/apt ${CURRENT_UBUNTU_VERSION}-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
   apt-get update && \
   echo "**** install build packages ****" && \
   apt-get update && \
@@ -43,7 +46,9 @@ RUN \
     libwebp-dev \
     meson \
     pkg-config \
-    postgresql-client \
+    postgresql-client-14 \
+    postgresql-client-15 \
+    postgresql-client-16 \
     unzip && \
   apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
     libdav1d-dev \
@@ -158,6 +163,7 @@ RUN \
     /etc/apt/sources.list.d/node.list \
     /tmp/* \
     /usr/share/keyrings/nodesource.gpg \
+    /usr/share/keyrings/pgdg-archive-keyring.gpg \
     /var/lib/apt/lists/* \
     /var/log/* \
     /var/tmp/*
