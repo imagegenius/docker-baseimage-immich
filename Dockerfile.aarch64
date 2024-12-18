@@ -161,6 +161,7 @@ RUN \
   apt-get clean && \
   rm -rf \
     /etc/apt/sources.list.d/node.list \
+    /etc/apt/sources.list.d/pgdg.list \
     /tmp/* \
     /usr/share/keyrings/nodesource.gpg \
     /usr/share/keyrings/pgdg-archive-keyring.gpg \
