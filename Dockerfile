@@ -6,8 +6,11 @@ FROM ghcr.io/imagegenius/baseimage-ubuntu:noble
 ARG BUILD_DATE
 ARG VERSION
 
-ARG LATEST_UBUNTU_VERSION="oracular"
+ARG LATEST_UBUNTU_VERSION="plucky"
 ARG CURRENT_UBUNTU_VERSION="noble"
+
+ARG INTEL_DEPENDENCIES_VERSION="latest"
+ARG INTEL_DEPENDENCIES_LEGACY_VERSION="24.35.30872.22"
 
 LABEL build_version="ImageGenius Version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="hydazz, martabal"
@@ -51,6 +54,7 @@ RUN \
     postgresql-client-14 \
     postgresql-client-15 \
     postgresql-client-16 \
+    postgresql-client-17 \
     unzip && \
   apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
     libdav1d-dev \
@@ -87,16 +91,34 @@ RUN \
     libwebp7 \
     libwebpdemux2 \
     libwebpmux3 && \
-  echo "**** install intel dependencies ****" && \
+  echo "**** install legacy intel dependencies ****" && \
   apt-get install --no-install-recommends -y \
     intel-media-va-driver-non-free \
     ocl-icd-libopencl1 && \
-  INTEL_DEPENDENCIES=$(curl -sX GET "https://api.github.com/repos/intel/compute-runtime/releases/latest" | jq -r '.body' | grep wget | grep -v .sum | grep -v .ddeb | sed 's|wget ||g') && \
+  if [ -n "$INTEL_DEPENDENCIES_LEGACY_VERSION" ]; then \
+    mkdir -p \
+      /tmp/intel/legacy && \
+    INTEL_LEGACY_DEPENDENCIES=$(curl -sX GET "https://api.github.com/repos/intel/compute-runtime/releases/tags/${INTEL_DEPENDENCIES_LEGACY_VERSION}" | jq -r '.body' | grep wget | grep -v .sum | grep -v .ddeb | sed 's|wget ||g') && \
+    mkdir -p /tmp/intel-legacy && \
+    for i in $INTEL_LEGACY_DEPENDENCIES; do \
+      curl -fS --retry 3 --retry-connrefused -o \
+        /tmp/intel-legacy/$(basename "${i%$'\r'}") -L \
+        "${i%$'\r'}" || exit 1; \
+    done && \
+    dpkg -i /tmp/intel-legacy/*.deb; \
+  fi; \
+  echo "**** install intel dependencies ****" && \
+  if [ -z "${INTEL_DEPENDENCIES_VERSION}" ] || [ "${INTEL_DEPENDENCIES_VERSION}" = "latest" ]; then \
+    INTEL_DEPENDENCIES_VERSION="latest"; \
+  else \
+    INTEL_DEPENDENCIES_VERSION="tags/${INTEL_DEPENDENCIES_VERSION}"; \
+  fi && \
+  INTEL_DEPENDENCIES=$(curl -sX GET "https://api.github.com/repos/intel/compute-runtime/releases/${INTEL_DEPENDENCIES_VERSION}" | jq -r '.body' | grep wget | grep -v .sum | grep -v .ddeb | sed 's|wget ||g') && \
   mkdir -p /tmp/intel && \
   for i in $INTEL_DEPENDENCIES; do \
     curl -fS --retry 3 --retry-connrefused -o \
       /tmp/intel/$(basename "${i%$'\r'}") -L \
-      "${i%$'\r'}"; \
+      "${i%$'\r'}" || exit 1; \
   done && \
   dpkg -i /tmp/intel/*.deb; \
   echo "**** download immich dependencies ****" && \
@@ -176,7 +198,9 @@ RUN \
     unzip && \
   apt-get autoremove -y --purge && \
   apt-get clean && \
+  head -n -2 /etc/apt/sources.list && \
   rm -rf \
+    /etc/apt/preferences.d/preferences \
     /etc/apt/sources.list.d/node.list \
     /etc/apt/sources.list.d/pgdg.list \
     /tmp/* \
