@@ -109,11 +109,14 @@ RUN \
   fi; \
   echo "**** install intel dependencies ****" && \
   if [ -z "${INTEL_DEPENDENCIES_VERSION}" ] || [ "${INTEL_DEPENDENCIES_VERSION}" = "latest" ]; then \
-    INTEL_DEPENDENCIES_VERSION="latest"; \
+    LATEST_VERSION=$(curl -sfX GET "https://api.github.com/repos/intel/compute-runtime/releases/latest" | jq -r '.tag_name'); \
+    INTEL_DEPENDENCIES_VERSION="tags/${LATEST_VERSION}"; \
   else \
     INTEL_DEPENDENCIES_VERSION="tags/${INTEL_DEPENDENCIES_VERSION}"; \
   fi && \
-  INTEL_DEPENDENCIES=$(curl -sX GET "https://api.github.com/repos/intel/compute-runtime/releases/${INTEL_DEPENDENCIES_VERSION}" | jq -r '.body' | grep wget | grep -v .sum | grep -v .ddeb | sed 's|wget ||g') && \
+  INTEL_DEPENDENCIES=$(curl -sfX GET "https://api.github.com/repos/intel/compute-runtime/releases/${INTEL_DEPENDENCIES_VERSION}" | jq -r '.assets[].browser_download_url' | grep -v .sum | grep -v .ddeb) && \
+  IGC_VERSION=$(curl -sfX GET "https://api.github.com/repos/intel/intel-graphics-compiler/releases/latest" | jq -r '.tag_name') && \
+  INTEL_DEPENDENCIES="${COMP_RT_URLS} $(curl -sfX GET https://api.github.com/repos/intel/intel-graphics-compiler/releases/tags/${IGC_VERSION} | jq -r '.assets[].browser_download_url' | grep -v devel)" && \
   mkdir -p /tmp/intel && \
   for i in $INTEL_DEPENDENCIES; do \
     curl -fS --retry 3 --retry-connrefused -o \
@@ -198,7 +201,10 @@ RUN \
     unzip && \
   apt-get autoremove -y --purge && \
   apt-get clean && \
-  sed -i '$d;$d' /etc/apt/sources.list && \
+  head -n -2 /etc/apt/sources.list > /tmp/sources.list && \
+  mv \
+    /tmp/sources.list \
+    /etc/apt/sources.list && \
   rm -rf \
     /etc/apt/preferences.d/preferences \
     /etc/apt/sources.list.d/node.list \
