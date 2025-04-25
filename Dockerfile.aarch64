@@ -147,14 +147,12 @@ RUN \
     libglib2.0-dev \
     libgsf-1-dev \
     libheif-dev \
-    libhwy-dev \
     libjpeg-dev \
     libltdl-dev \
     libbrotli-dev \
     librsvg2-dev \
     libspng-dev \
     libtool \
-    libwebp-dev \
     meson \
     pkg-config \
     unzip && \
