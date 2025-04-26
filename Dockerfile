@@ -24,8 +24,6 @@ RUN \
   UBUNTU_REPO="http://archive.ubuntu.com/ubuntu/" && \
   printf "deb ${UBUNTU_REPO} ${LATEST_UBUNTU_VERSION} main restricted universe multiverse\ndeb-src ${UBUNTU_REPO} ${LATEST_UBUNTU_VERSION} main restricted universe multiverse" >> /etc/apt/sources.list && \
   printf "Package: *\nPin: release n=${LATEST_UBUNTU_VERSION}\nPin-Priority: 450" > /etc/apt/preferences.d/preferences && \
-  echo "deb [signed-by=/usr/share/keyrings/nodesource-repo.gpg] https://deb.nodesource.com/node_20.x nodistro main" >>/etc/apt/sources.list.d/node.list && \
-  curl -s https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource-repo.gpg >/dev/null && \
   curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor > /usr/share/keyrings/pgdg-archive-keyring.gpg && \
   echo "deb [signed-by=/usr/share/keyrings/pgdg-archive-keyring.gpg] https://apt.postgresql.org/pub/repos/apt ${CURRENT_UBUNTU_VERSION}-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
   apt-get update && \
@@ -83,7 +81,6 @@ RUN \
     mesa-utils \
     mesa-va-drivers \
     mesa-vulkan-drivers \
-    nodejs \
     perl \
     zlib1g && \
   apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
@@ -205,10 +202,8 @@ RUN \
     /etc/apt/sources.list && \
   rm -rf \
     /etc/apt/preferences.d/preferences \
-    /etc/apt/sources.list.d/node.list \
     /etc/apt/sources.list.d/pgdg.list \
     /tmp/* \
-    /usr/share/keyrings/nodesource.gpg \
     /usr/share/keyrings/pgdg-archive-keyring.gpg \
     /var/lib/apt/lists/* \
     /var/log/* \
