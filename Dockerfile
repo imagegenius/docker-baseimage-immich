@@ -35,6 +35,7 @@ RUN \
     build-essential \
     cmake \
     git \
+    libaom-dev \
     libbrotli-dev \
     libde265-dev \
     libexif-dev \
@@ -84,6 +85,7 @@ RUN \
     perl \
     zlib1g && \
   apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
+    libaom3 \
     libhwy1t64 \
     libwebp7 \
     libwebpdemux2 \
