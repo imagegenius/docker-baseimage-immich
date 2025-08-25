@@ -19,7 +19,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN \
   mkdir -p \
-    /app/immich/server/geodata \
+    /app/immich/data/geodata \
     /tmp/immich-dependencies && \
   UBUNTU_REPO="http://archive.ubuntu.com/ubuntu/" && \
   printf "deb ${UBUNTU_REPO} ${LATEST_UBUNTU_VERSION} main restricted universe multiverse\ndeb-src ${UBUNTU_REPO} ${LATEST_UBUNTU_VERSION} main restricted universe multiverse" >> /etc/apt/sources.list && \
@@ -156,24 +156,24 @@ RUN \
     --slurpfile sources /tmp/sources.json \
     --slurpfile packages /tmp/packages.json \
     '{sources: $sources[0], packages: $packages[0]}' \
-    > /app/immich/server/build-lock.json && \
+    > /app/immich/data/build-lock.json && \
   echo "**** download geocoding data ****" && \
   curl -o \
     /tmp/cities500.zip -L \
     "https://download.geonames.org/export/dump/cities500.zip" && \
   curl -o \
-    /app/immich/server/geodata/admin1CodesASCII.txt -L \
+    /app/immich/data/geodata/admin1CodesASCII.txt -L \
     "https://download.geonames.org/export/dump/admin1CodesASCII.txt" && \
   curl -o \
-    /app/immich/server/geodata/admin2Codes.txt -L \
+    /app/immich/data/geodata/admin2Codes.txt -L \
     "https://download.geonames.org/export/dump/admin2Codes.txt" && \
   curl -o \
-    /app/immich/server/geodata/ne_10m_admin_0_countries.geojson -L \
+    /app/immich/data/geodata/ne_10m_admin_0_countries.geojson -L \
     "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_10m_admin_0_countries.geojson" && \
   unzip \
     /tmp/cities500.zip -d \
-    /app/immich/server/geodata && \
-  date --iso-8601=seconds | tr -d "\n" > /app/immich/server/geodata/geodata-date.txt && \
+    /app/immich/data/geodata && \
+  date --iso-8601=seconds | tr -d "\n" > /app/immich/data/geodata/geodata-date.txt && \
   echo "**** cleanup ****" && \
   apt-get remove -y --purge \
     autoconf \
