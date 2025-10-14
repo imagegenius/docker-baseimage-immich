@@ -279,7 +279,7 @@ postgresql-client-14            14.19-1.pgdg24.04+1                deb
 postgresql-client-15            15.14-1.pgdg24.04+1                deb     
 postgresql-client-16            16.10-1.pgdg24.04+1                deb     
 postgresql-client-17            17.6-2.pgdg24.04+1                 deb     
-postgresql-client-common        283.pgdg24.04+1                    deb     
+postgresql-client-common        285.pgdg24.04+1                    deb     
 procps                          2:4.0.4-4ubuntu3.2                 deb     
 publicsuffix                    20231001.0357-0.1                  deb     
 readline-common                 8.2-4build1                        deb     
