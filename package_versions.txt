@@ -175,7 +175,7 @@ libpcre2-8-0                    10.42-4ubuntu2.1                   deb
 libperl5.38t64                  5.38.2-3.2ubuntu0.2                deb     
 libpixman-1-0                   0.42.2-1build1                     deb     
 libpng16-16t64                  1.6.43-5build1                     deb     
-libpq5                          18.0-1.pgdg24.04+3                 deb     
+libpq5                          18.1-1.pgdg24.04+2                 deb     
 libproc2-0                      2:4.0.4-4ubuntu3.2                 deb     
 libpsl5t64                      0.21.2-1.1build1                   deb     
 libreadline8t64                 8.2-4build1                        deb     
@@ -198,7 +198,7 @@ libsmartcols1                   2.39.3-9ubuntu6.3                  deb
 libspng0                        0.7.4-1build1                      deb     
 libsqlite3-0                    3.45.1-1ubuntu2.5                  deb     
 libss2                          1.47.0-2.4~exp1ubuntu4.1           deb     
-libssh-4                        0.10.6-2ubuntu0.1                  deb     
+libssh-4                        0.10.6-2ubuntu0.2                  deb     
 libssl3t64                      3.0.13-0ubuntu3.6                  deb     
 libstdc++6                      14.2.0-4ubuntu2~24.04              deb     
 libsystemd0                     255.4-1ubuntu8.11                  deb     
@@ -275,11 +275,11 @@ perl                            5.38.2-3.2ubuntu0.2                deb
 perl-base                       5.38.2-3.2ubuntu0.2                deb     
 perl-modules-5.38               5.38.2-3.2ubuntu0.2                deb     
 pinentry-curses                 1.2.1-3ubuntu5                     deb     
-postgresql-client-14            14.19-1.pgdg24.04+1                deb     
-postgresql-client-15            15.14-1.pgdg24.04+1                deb     
-postgresql-client-16            16.10-1.pgdg24.04+1                deb     
-postgresql-client-17            17.6-2.pgdg24.04+1                 deb     
-postgresql-client-common        285.pgdg24.04+1                    deb     
+postgresql-client-14            14.20-1.pgdg24.04+1                deb     
+postgresql-client-15            15.15-1.pgdg24.04+1                deb     
+postgresql-client-16            16.11-1.pgdg24.04+1                deb     
+postgresql-client-17            17.7-3.pgdg24.04+1                 deb     
+postgresql-client-common        287.pgdg24.04+1                    deb     
 procps                          2:4.0.4-4ubuntu3.2                 deb     
 publicsuffix                    20231001.0357-0.1                  deb     
 readline-common                 8.2-4build1                        deb     
