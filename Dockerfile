@@ -54,6 +54,7 @@ RUN \
     postgresql-client-15 \
     postgresql-client-16 \
     postgresql-client-17 \
+    postgresql-client-18 \
     unzip && \
   apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
     libdav1d-dev \
