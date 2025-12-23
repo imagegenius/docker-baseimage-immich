@@ -6,7 +6,7 @@ FROM ghcr.io/imagegenius/baseimage-ubuntu:noble
 ARG BUILD_DATE
 ARG VERSION
 
-ARG LATEST_UBUNTU_VERSION="questing"
+ARG LATEST_UBUNTU_VERSION="resolute"
 ARG CURRENT_UBUNTU_VERSION="noble"
 
 ARG INTEL_DEPENDENCIES_VERSION="latest"
