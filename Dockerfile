@@ -6,7 +6,7 @@ FROM ghcr.io/imagegenius/baseimage-ubuntu:noble
 ARG BUILD_DATE
 ARG VERSION
 
-ARG LATEST_UBUNTU_VERSION="plucky"
+ARG LATEST_UBUNTU_VERSION="resolute"
 ARG CURRENT_UBUNTU_VERSION="noble"
 
 ARG INTEL_DEPENDENCIES_VERSION="latest"
@@ -37,7 +37,6 @@ RUN \
     git \
     libaom-dev \
     libbrotli-dev \
-    libde265-dev \
     libexif-dev \
     libexpat1-dev \
     libglib2.0-dev \
@@ -58,12 +57,13 @@ RUN \
     unzip && \
   apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
     libdav1d-dev \
+    # libde265 v1.0.16 includes a fix for HDR images
+    libde265-dev \
     libhwy-dev \
     libwebp-dev && \
   echo "**** install runtime packages ****" && \
   apt-get install --no-install-recommends -y \
     libdav1d7 \
-    libde265-0 \
     libexif12 \
     libexpat1 \
     libgcc-s1 \
@@ -87,6 +87,7 @@ RUN \
     zlib1g && \
   apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
     libaom3 \
+    libde265-0 \
     libhwy1t64 \
     libwebp7 \
     libwebpdemux2 \
