@@ -106,8 +106,8 @@ libgdk-pixbuf2.0-common         2.42.10+dfsg-3ubuntu3.2            deb
 libgl1                          1.7.0-1build1                      deb     
 libgl1-mesa-dri                 25.0.7-0ubuntu0.24.04.2            deb     
 libgles2                        1.7.0-1build1                      deb     
-libglib2.0-0t64                 2.80.0-6ubuntu3.5                  deb     
-libglib2.0-data                 2.80.0-6ubuntu3.5                  deb     
+libglib2.0-0t64                 2.80.0-6ubuntu3.6                  deb     
+libglib2.0-data                 2.80.0-6ubuntu3.6                  deb     
 libglvnd0                       1.7.0-1build1                      deb     
 libglx-mesa0                    25.0.7-0ubuntu0.24.04.2            deb     
 libglx0                         1.7.0-1build1                      deb     
