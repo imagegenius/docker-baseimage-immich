@@ -23,13 +23,14 @@ RUN \
   echo "deb [signed-by=/usr/share/keyrings/pgdg-archive-keyring.gpg] https://apt.postgresql.org/pub/repos/apt ${CURRENT_UBUNTU_VERSION}-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
   apt-get update && \
   echo "**** install build packages ****" && \
-  apt-get update && \
   apt-get install --no-install-recommends -y \
     autoconf \
+    automake \
     bc \
     build-essential \
     cmake \
     git \
+    jq \
     libaom-dev \
     libbrotli-dev \
     libexif-dev \
@@ -37,19 +38,23 @@ RUN \
     libglib2.0-dev \
     libgsf-1-dev \
     libjpeg-dev \
+    liblcms2-dev \
     libltdl-dev \
     librsvg2-dev \
     libspng-dev \
     libtool \
     libwebp-dev \
+    make \
     meson \
+    ninja-build \
     pkg-config \
     postgresql-client-14 \
     postgresql-client-15 \
     postgresql-client-16 \
     postgresql-client-17 \
     postgresql-client-18 \
-    unzip && \
+    unzip \
+    wget && \
   apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
     libdav1d-dev \
     # libde265 v1.0.16 includes a fix for HDR images
@@ -58,6 +63,7 @@ RUN \
     libwebp-dev && \
   echo "**** install runtime packages ****" && \
   apt-get install --no-install-recommends -y \
+    ca-certificates \
     libdav1d7 \
     libexif12 \
     libexpat1 \
@@ -78,6 +84,7 @@ RUN \
     mesa-utils \
     mesa-va-drivers \
     mesa-vulkan-drivers \
+    ocl-icd-libopencl1 \
     perl \
     zlib1g && \
   apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
@@ -87,6 +94,7 @@ RUN \
     libwebp7 \
     libwebpdemux2 \
     libwebpmux3 && \
+  echo "**** download immich dependencies ****" && \
   curl -o \
     /tmp/immich-dependencies.tar.gz -L \
     "https://github.com/immich-app/base-images/archive/main.tar.gz" && \
@@ -102,8 +110,12 @@ RUN \
   apt-get install --no-install-recommends -y -f \
     /tmp/ffmpeg.deb && \
   ldconfig /usr/lib/jellyfin-ffmpeg/lib && \
-  ln -s /usr/lib/jellyfin-ffmpeg/ffmpeg /usr/bin && \
-  ln -s /usr/lib/jellyfin-ffmpeg/ffprobe /usr/bin && \
+  ln -s \
+    /usr/lib/jellyfin-ffmpeg/ffmpeg \
+    /usr/bin && \
+  ln -s \
+    /usr/lib/jellyfin-ffmpeg/ffprobe \
+    /usr/bin && \
   ./libjxl.sh \
     --JPEGLI_LIBJPEG_LIBRARY_SOVERSION 8 \
     --JPEGLI_LIBJPEG_LIBRARY_VERSION 8.2.2 && \
@@ -138,10 +150,14 @@ RUN \
   echo "**** cleanup ****" && \
   apt-get remove -y --purge \
     autoconf \
+    automake \
     bc \
     build-essential \
     cmake \
     git \
+    jq \
+    libaom-dev \
+    libbrotli-dev \
     libdav1d-dev \
     libde265-dev \
     libexif-dev \
@@ -149,15 +165,20 @@ RUN \
     libglib2.0-dev \
     libgsf-1-dev \
     libheif-dev \
+    libhwy-dev \
     libjpeg-dev \
+    liblcms2-dev \
     libltdl-dev \
-    libbrotli-dev \
     librsvg2-dev \
     libspng-dev \
     libtool \
+    libwebp-dev \
+    make \
     meson \
+    ninja-build \
     pkg-config \
-    unzip && \
+    unzip \
+    wget && \
   apt-get autoremove -y --purge && \
   apt-get clean && \
   head -n -2 /etc/apt/sources.list > /tmp/sources.list && \

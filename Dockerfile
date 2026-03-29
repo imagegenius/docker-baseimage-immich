@@ -9,9 +9,6 @@ ARG VERSION
 ARG LATEST_UBUNTU_VERSION="resolute"
 ARG CURRENT_UBUNTU_VERSION="noble"
 
-ARG INTEL_DEPENDENCIES_VERSION="latest"
-ARG INTEL_DEPENDENCIES_LEGACY_VERSION="24.35.30872.22"
-
 LABEL build_version="ImageGenius Version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="hydazz, martabal"
 
@@ -28,13 +25,14 @@ RUN \
   echo "deb [signed-by=/usr/share/keyrings/pgdg-archive-keyring.gpg] https://apt.postgresql.org/pub/repos/apt ${CURRENT_UBUNTU_VERSION}-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
   apt-get update && \
   echo "**** install build packages ****" && \
-  apt-get update && \
   apt-get install --no-install-recommends -y \
     autoconf \
+    automake \
     bc \
     build-essential \
     cmake \
     git \
+    jq \
     libaom-dev \
     libbrotli-dev \
     libexif-dev \
@@ -42,19 +40,23 @@ RUN \
     libglib2.0-dev \
     libgsf-1-dev \
     libjpeg-dev \
+    liblcms2-dev \
     libltdl-dev \
     librsvg2-dev \
     libspng-dev \
     libtool \
     libwebp-dev \
+    make \
     meson \
+    ninja-build \
     pkg-config \
     postgresql-client-14 \
     postgresql-client-15 \
     postgresql-client-16 \
     postgresql-client-17 \
     postgresql-client-18 \
-    unzip && \
+    unzip \
+    wget && \
   apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
     libdav1d-dev \
     # libde265 v1.0.16 includes a fix for HDR images
@@ -63,6 +65,8 @@ RUN \
     libwebp-dev && \
   echo "**** install runtime packages ****" && \
   apt-get install --no-install-recommends -y \
+    ca-certificates \
+    intel-media-va-driver-non-free \
     libdav1d7 \
     libexif12 \
     libexpat1 \
@@ -83,6 +87,7 @@ RUN \
     mesa-utils \
     mesa-va-drivers \
     mesa-vulkan-drivers \
+    ocl-icd-libopencl1 \
     perl \
     zlib1g && \
   apt-get install --no-install-recommends -y -t ${LATEST_UBUNTU_VERSION} \
@@ -92,42 +97,20 @@ RUN \
     libwebp7 \
     libwebpdemux2 \
     libwebpmux3 && \
-  echo "**** install legacy intel dependencies ****" && \
-  apt-get install --no-install-recommends -y \
-    intel-media-va-driver-non-free \
-    ocl-icd-libopencl1 && \
-  if [ -n "$INTEL_DEPENDENCIES_LEGACY_VERSION" ]; then \
-    mkdir -p \
-      /tmp/intel/legacy && \
-    INTEL_LEGACY_DEPENDENCIES=$(curl -sX GET "https://api.github.com/repos/intel/compute-runtime/releases/tags/${INTEL_DEPENDENCIES_LEGACY_VERSION}" | jq -r '.body' | grep wget | grep -v .sum | grep -v .ddeb | sed 's|wget ||g') && \
-    mkdir -p /tmp/intel-legacy && \
-    for i in $INTEL_LEGACY_DEPENDENCIES; do \
-      curl -fS --retry 3 --retry-connrefused -o \
-        /tmp/intel-legacy/$(basename "${i%$'\r'}") -L \
-        "${i%$'\r'}" || exit 1; \
-    done && \
-    dpkg -i /tmp/intel-legacy/*.deb; \
-  fi; \
   echo "**** install intel dependencies ****" && \
-  if [ -z "${INTEL_DEPENDENCIES_VERSION}" ] || [ "${INTEL_DEPENDENCIES_VERSION}" = "latest" ]; then \
-    LATEST_VERSION=$(curl -sfX GET "https://api.github.com/repos/intel/compute-runtime/releases/latest" | jq -r '.tag_name'); \
-    INTEL_DEPENDENCIES_VERSION="tags/${LATEST_VERSION}"; \
-  else \
-    INTEL_DEPENDENCIES_VERSION="tags/${INTEL_DEPENDENCIES_VERSION}"; \
-  fi && \
-  INTEL_DEPENDENCIES=$(curl -sfX GET "https://api.github.com/repos/intel/compute-runtime/releases/${INTEL_DEPENDENCIES_VERSION}" | jq -r '.assets[].browser_download_url' | grep -v .sum | grep -v .ddeb) && \
-  IGC_VERSION=$(curl -sfX GET "https://api.github.com/repos/intel/intel-graphics-compiler/releases/latest" | jq -r '.tag_name') && \
-  INTEL_DEPENDENCIES="${COMP_RT_URLS} $(curl -sfX GET https://api.github.com/repos/intel/intel-graphics-compiler/releases/tags/${IGC_VERSION} | jq -r '.assets[].browser_download_url' | grep -v devel)" && \
-  mkdir -p /tmp/intel && \
-  for i in $INTEL_DEPENDENCIES; do \
-    curl -fS --retry 3 --retry-connrefused -o \
-      /tmp/intel/$(basename "${i%$'\r'}") -L \
-      "${i%$'\r'}" || exit 1; \
-  done && \
-  dpkg -i /tmp/intel/*.deb; \
-  echo "**** download immich dependencies ****" && \
   mkdir -p \
-    /tmp/immich-dependencies && \
+    /tmp/intel && \
+  wget -nv -P /tmp/intel \
+    "https://github.com/intel/intel-graphics-compiler/releases/download/igc-1.0.17537.24/intel-igc-core_1.0.17537.24_amd64.deb" \
+    "https://github.com/intel/intel-graphics-compiler/releases/download/igc-1.0.17537.24/intel-igc-opencl_1.0.17537.24_amd64.deb" \
+    "https://github.com/intel/compute-runtime/releases/download/24.35.30872.36/intel-opencl-icd-legacy1_24.35.30872.36_amd64.deb" \
+    "https://github.com/intel/intel-graphics-compiler/releases/download/v2.28.4/intel-igc-core-2_2.28.4+20760_amd64.deb" \
+    "https://github.com/intel/intel-graphics-compiler/releases/download/v2.28.4/intel-igc-opencl-2_2.28.4+20760_amd64.deb" \
+    "https://github.com/intel/compute-runtime/releases/download/26.05.37020.3/intel-opencl-icd_26.05.37020.3-0_amd64.deb" \
+    "https://github.com/intel/compute-runtime/releases/download/26.05.37020.3/libigdgmm12_22.9.0_amd64.deb" && \
+  dpkg -i \
+    /tmp/intel/*.deb && \
+  echo "**** download immich dependencies ****" && \
   curl -o \
     /tmp/immich-dependencies.tar.gz -L \
     "https://github.com/immich-app/base-images/archive/main.tar.gz" && \
@@ -143,8 +126,12 @@ RUN \
   apt-get install --no-install-recommends -y -f \
     /tmp/ffmpeg.deb && \
   ldconfig /usr/lib/jellyfin-ffmpeg/lib && \
-  ln -s /usr/lib/jellyfin-ffmpeg/ffmpeg /usr/bin && \
-  ln -s /usr/lib/jellyfin-ffmpeg/ffprobe /usr/bin && \
+  ln -s \
+    /usr/lib/jellyfin-ffmpeg/ffmpeg \
+    /usr/bin && \
+  ln -s \
+    /usr/lib/jellyfin-ffmpeg/ffprobe \
+    /usr/bin && \
   ./libjxl.sh \
     --JPEGLI_LIBJPEG_LIBRARY_SOVERSION 8 \
     --JPEGLI_LIBJPEG_LIBRARY_VERSION 8.2.2 && \
@@ -179,10 +166,14 @@ RUN \
   echo "**** cleanup ****" && \
   apt-get remove -y --purge \
     autoconf \
+    automake \
     bc \
     build-essential \
     cmake \
     git \
+    jq \
+    libaom-dev \
+    libbrotli-dev \
     libdav1d-dev \
     libde265-dev \
     libexif-dev \
@@ -190,15 +181,20 @@ RUN \
     libglib2.0-dev \
     libgsf-1-dev \
     libheif-dev \
+    libhwy-dev \
     libjpeg-dev \
+    liblcms2-dev \
     libltdl-dev \
-    libbrotli-dev \
     librsvg2-dev \
     libspng-dev \
     libtool \
+    libwebp-dev \
+    make \
     meson \
+    ninja-build \
     pkg-config \
-    unzip && \
+    unzip \
+    wget && \
   apt-get autoremove -y --purge && \
   apt-get clean && \
   head -n -2 /etc/apt/sources.list > /tmp/sources.list && \
