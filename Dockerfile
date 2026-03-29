@@ -12,8 +12,6 @@ ARG CURRENT_UBUNTU_VERSION="noble"
 LABEL build_version="ImageGenius Version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="hydazz, martabal"
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
 RUN \
   mkdir -p \
     /app/immich/data/geodata \
@@ -171,7 +169,6 @@ RUN \
     build-essential \
     cmake \
     git \
-    jq \
     libaom-dev \
     libbrotli-dev \
     libdav1d-dev \

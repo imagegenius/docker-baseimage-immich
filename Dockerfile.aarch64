@@ -155,7 +155,6 @@ RUN \
     build-essential \
     cmake \
     git \
-    jq \
     libaom-dev \
     libbrotli-dev \
     libdav1d-dev \
