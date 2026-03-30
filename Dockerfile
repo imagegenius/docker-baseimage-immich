@@ -43,7 +43,6 @@ RUN \
     librsvg2-dev \
     libspng-dev \
     libtool \
-    libwebp-dev \
     make \
     meson \
     ninja-build \
