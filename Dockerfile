@@ -59,6 +59,7 @@ RUN \
     # libde265 v1.0.16 includes a fix for HDR images
     libde265-dev \
     libhwy-dev \
+    libsharpyuv-dev \
     libwebp-dev && \
   echo "**** install runtime packages ****" && \
   apt-get install --no-install-recommends -y \
@@ -182,6 +183,7 @@ RUN \
     liblcms2-dev \
     libltdl-dev \
     librsvg2-dev \
+    libsharpyuv-dev \
     libspng-dev \
     libtool \
     libwebp-dev \
