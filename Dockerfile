@@ -95,6 +95,8 @@ RUN \
     libwebp7 \
     libwebpdemux2 \
     libwebpmux3 && \
+  apt-mark manual \
+    libaom3 && \
   echo "**** install intel dependencies ****" && \
   mkdir -p \
     /tmp/intel && \

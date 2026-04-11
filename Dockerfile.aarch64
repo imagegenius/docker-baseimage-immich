@@ -94,6 +94,8 @@ RUN \
     libwebp7 \
     libwebpdemux2 \
     libwebpmux3 && \
+  apt-mark manual \
+    libaom3 && \
   echo "**** download immich dependencies ****" && \
   curl -o \
     /tmp/immich-dependencies.tar.gz -L \
